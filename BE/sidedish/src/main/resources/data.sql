@@ -1,0 +1,15 @@
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('할인특가 세트상품', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('풍성한 고기반찬', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('바다향가득 반찬', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('편리한 반찬세트', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('간편한 덮밥요리', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('우리아이영양반찬', true);
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('main');
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('soup');
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('side');
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('이벤트특가');
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('론칭특가');
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('베스트');
+INSERT INTO `sidedish`.`delivery_type` (`name`) VALUES ('새벽배송');
+INSERT INTO `sidedish`.`delivery_type` (`name`) VALUES ('전국택배');
+INSERT INTO `sidedish`.`provider` (`name`, `delivery_fee`, `delivery_free_price`) VALUES ('동네부엌', '2500', '40000');
