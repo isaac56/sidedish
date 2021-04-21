@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import team16.sidedish.domain.entity.product.Product;
-import team16.sidedish.domain.entity.product.ProductBadge;
-import team16.sidedish.domain.entity.product.ProductCategory;
-import team16.sidedish.domain.entity.product.ProductImage;
+import team16.sidedish.domain.entity.aggregate.product.Product;
+import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
+import team16.sidedish.domain.entity.aggregate.product.ProductCategory;
+import team16.sidedish.domain.entity.aggregate.product.ProductImage;
 
 @Transactional
 @SpringBootTest

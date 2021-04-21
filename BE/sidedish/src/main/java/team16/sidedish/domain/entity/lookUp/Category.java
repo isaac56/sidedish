@@ -1,4 +1,4 @@
-package team16.sidedish.domain.entity;
+package team16.sidedish.domain.entity.lookUp;
 
 import org.springframework.data.annotation.Id;
 

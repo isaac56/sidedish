@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import team16.sidedish.domain.entity.provider.Provider;
-
-import static org.junit.jupiter.api.Assertions.*;
+import team16.sidedish.domain.entity.aggregate.provider.Provider;
 
 @Transactional
 @SpringBootTest
