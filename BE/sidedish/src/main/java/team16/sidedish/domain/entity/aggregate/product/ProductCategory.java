@@ -14,9 +14,8 @@ public class ProductCategory {
 
     private Long productId;
 
-    public ProductCategory(Integer categoryId, Long productId) {
+    public ProductCategory(Integer categoryId) {
         this.categoryId = categoryId;
-        this.productId = productId;
     }
 
     public Long getId() {
@@ -33,10 +32,6 @@ public class ProductCategory {
 
     public Long getProductId() {
         return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     @Override
