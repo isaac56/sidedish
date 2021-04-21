@@ -1,4 +1,4 @@
-package team16.sidedish.domain.entity.provider;
+package team16.sidedish.domain.entity.aggregate.provider;
 
 import org.springframework.data.annotation.Id;
 
