@@ -23,18 +23,17 @@ class ProductRepositoryTest {
 
     @Test
     @DisplayName("저장 테스트")
-    public void saveTest(){
-        Product test = new Product(1L,"사계절 건강식당 작은상", "마포엄마들이 사랑해온 건강반찬"
-        ,10000,9000,10,"https://cdn.bmf.kr/_data/product/201410/13/b8b0a0aba3386f030155b6cb0c1c75fa.jpg", 10);
+    public void saveTest() {
+        Product test = new Product(1L, "사계절 건강식당 작은상", "마포엄마들이 사랑해온 건강반찬"
+                , 10000, 9000, 10, "https://cdn.bmf.kr/_data/product/201410/13/b8b0a0aba3386f030155b6cb0c1c75fa.jpg", 10);
 
         test = productRepository.save(test);
 
-        test.addImage(new ProductImage("asdf",1L,false));
-        test.addBadgeRef(new ProductBadge(1L,1));
-        test.addCategoryRef(new ProductCategory(1,1L));
+        test.addImage(new ProductImage("asdf", false));
+        test.addBadgeRef(new ProductBadge(1));
+        test.addCategoryRef(new ProductCategory(1));
         test = productRepository.save(test);
 
-        Assertions.assertThat(productRepository.count()).isEqualTo(1L);
         Assertions.assertThat(test.getProductBadges().size()).isEqualTo(1);
         Assertions.assertThat(test.getImages().size()).isEqualTo(1);
         Assertions.assertThat(test.getProductCategories().size()).isEqualTo(1);

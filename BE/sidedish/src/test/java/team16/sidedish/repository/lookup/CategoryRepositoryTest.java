@@ -20,10 +20,8 @@ class CategoryRepositoryTest {
 
     @Test
     @DisplayName("Category save 테스트")
-    public void save(){
-        categoryRepository.deleteAll();
-
-        Category category = new Category("우리아이 건강반찬",true);
+    public void save() {
+        Category category = new Category("우리아이 건강반찬", true);
         category = categoryRepository.save(category);
         Assertions.assertThat(category.getId()).isNotNull();
     }

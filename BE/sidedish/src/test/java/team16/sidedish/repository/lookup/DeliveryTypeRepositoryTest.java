@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import team16.sidedish.domain.entity.lookUp.DeliveryType;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Transactional
 @SpringBootTest
 class DeliveryTypeRepositoryTest {
@@ -22,9 +20,7 @@ class DeliveryTypeRepositoryTest {
 
     @Test
     @DisplayName("DeliveryType save 테스트")
-    public void save(){
-        deliveryTypeRepository.deleteAll();
-
+    public void save() {
         DeliveryType deliveryType = new DeliveryType("퀵배송");
         deliveryType = deliveryTypeRepository.save(deliveryType);
         Assertions.assertThat(deliveryType.getId()).isNotNull();
