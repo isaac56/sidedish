@@ -17,7 +17,7 @@ public class Provider {
     private Integer deliveryFreePrice;
 
     @MappedCollection(idColumn = "provider_id")
-    private final Set<ProviderDeliveryType> deliveryTypes = new HashSet<>();
+    private Set<ProviderDeliveryType> deliveryTypes = new HashSet<>();
 
     public Provider(String name, Integer deliveryFee, Integer deliveryFreePrice) {
         this.name = name;
@@ -27,6 +27,10 @@ public class Provider {
 
     public Set<ProviderDeliveryType> getDeliveryTypes() {
         return deliveryTypes;
+    }
+
+    public void setDeliveryTypes(Set<ProviderDeliveryType> deliveryTypes) {
+        this.deliveryTypes = deliveryTypes;
     }
 
     public void addDeliveryType(ProviderDeliveryType... providerDeliveryTypes) {

@@ -17,7 +17,7 @@ public class Order {
     private LocalDateTime createTime;
 
     @MappedCollection(idColumn = "order_id")
-    private final Set<OrderProduct> products = new HashSet<>();
+    private Set<OrderProduct> products = new HashSet<>();
 
     public Order(LocalDateTime createTime) {
         this.createTime = createTime;
@@ -27,13 +27,17 @@ public class Order {
         return products;
     }
 
-    public void addProduct(OrderProduct... orderProducts){
-        for(OrderProduct orderProduct : orderProducts){
+    public void setProducts(Set<OrderProduct> products) {
+        this.products = products;
+    }
+
+    public void addProduct(OrderProduct... orderProducts) {
+        for (OrderProduct orderProduct : orderProducts) {
             this.products.add(orderProduct);
         }
     }
 
-    public void removeProduct(OrderProduct orderProduct){
+    public void removeProduct(OrderProduct orderProduct) {
         this.products.remove(orderProduct);
     }
 

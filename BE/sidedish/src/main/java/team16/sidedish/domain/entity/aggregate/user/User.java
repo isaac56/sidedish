@@ -15,10 +15,10 @@ public class User {
     private String password;
 
     @MappedCollection(idColumn = "user_id")
-    private final Set<Order> orders = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
     @MappedCollection(idColumn = "user_id")
-    private final Set<Cart> carts = new HashSet<>();
+    private Set<Cart> carts = new HashSet<>();
 
     public User(String email, String password) {
         this.email = email;
@@ -29,25 +29,33 @@ public class User {
         return orders;
     }
 
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     public Set<Cart> getCarts() {
         return carts;
     }
 
-    public void addOrder(Order... orders){
-        for(Order order: orders){
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public void addOrder(Order... orders) {
+        for (Order order : orders) {
             this.orders.add(order);
         }
     }
 
-    public void removeOrder(Order order){
+    public void removeOrder(Order order) {
         this.orders.remove(order.getId());
     }
 
-    public void addCart(Cart cart){
+    public void addCart(Cart cart) {
         this.carts.add(cart);
     }
 
-    public void removeCart(Cart cart){
+    public void removeCart(Cart cart) {
         this.carts.remove(cart);
     }
 
