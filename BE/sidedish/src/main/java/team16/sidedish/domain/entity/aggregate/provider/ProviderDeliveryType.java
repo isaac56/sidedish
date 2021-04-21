@@ -10,8 +10,7 @@ public class ProviderDeliveryType{
 
     private Integer deliveryType;
 
-    public ProviderDeliveryType(Long providerId, Integer deliveryType) {
-        this.providerId = providerId;
+    public ProviderDeliveryType(Integer deliveryType) {
         this.deliveryType = deliveryType;
     }
 
@@ -21,10 +20,6 @@ public class ProviderDeliveryType{
 
     public Long getProviderId() {
         return providerId;
-    }
-
-    public void setProviderId(Long providerId) {
-        this.providerId = providerId;
     }
 
     public Integer getDeliveryType() {

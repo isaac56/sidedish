@@ -14,9 +14,8 @@ public class ProductImage {
 
     private boolean isDetail;
 
-    public ProductImage(String url, Long productId, boolean isDetail) {
+    public ProductImage(String url, boolean isDetail) {
         this.url = url;
-        this.productId = productId;
         this.isDetail = isDetail;
     }
 
@@ -38,10 +37,6 @@ public class ProductImage {
 
     public Long getProductId() {
         return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public boolean isDetail() {

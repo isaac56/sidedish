@@ -14,8 +14,7 @@ public class ProductBadge {
 
     private Integer badgeId;
 
-    public ProductBadge(Long productId, Integer badgeId) {
-        this.productId = productId;
+    public ProductBadge(Integer badgeId) {
         this.badgeId = badgeId;
     }
 
@@ -25,10 +24,6 @@ public class ProductBadge {
 
     public Long getProductId() {
         return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Integer getBadgeId() {
