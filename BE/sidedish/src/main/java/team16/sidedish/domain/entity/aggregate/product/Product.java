@@ -87,6 +87,10 @@ public class Product {
         this.id = id;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
     public void setHash(String hash) {
         this.hash = hash;
     }
