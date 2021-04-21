@@ -36,7 +36,7 @@ public class MenuResponseDto {
     private List<String> deliveryType;
     private String title;
     private String description;
-    private int nPrice;
-    private int sPrice;
+    private String nPrice;
+    private String sPrice;
     private List<String> badge;
 }

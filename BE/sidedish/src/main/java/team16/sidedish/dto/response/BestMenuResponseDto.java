@@ -3,6 +3,7 @@ package team16.sidedish.dto.response;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -64,6 +65,7 @@ import java.util.List;
  */
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class BestMenuResponseDto {
     private String categoryId;
