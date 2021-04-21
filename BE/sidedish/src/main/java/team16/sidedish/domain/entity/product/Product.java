@@ -1,4 +1,4 @@
-package team16.sidedish.domain.product;
+package team16.sidedish.domain.entity.product;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
