@@ -1,11 +1,16 @@
 package team16.sidedish.domain.entity.aggregate.product;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"hash"})
 public class Product {
     @Id
     private Long id;
@@ -51,6 +56,7 @@ public class Product {
 
     public void addImage(ProductImage... images) {
         for (ProductImage image : images) {
+            image.setProductId(this.id);
             this.images.add(image);
         }
     }
@@ -61,6 +67,7 @@ public class Product {
 
     public void addBadgeRef(ProductBadge... productBadges) {
         for (ProductBadge productBadge : productBadges) {
+            productBadge.setProductId(this.id);
             this.productBadges.add(productBadge);
         }
     }
@@ -71,115 +78,12 @@ public class Product {
 
     public void addCategoryRef(ProductCategory... productCategories) {
         for (ProductCategory productCategory : productCategories) {
+            productCategory.setProductId(this.id);
             this.productCategories.add(productCategory);
         }
     }
 
     public void removeCategoryRef(ProductCategory productCategory) {
         this.productCategories.remove(productCategory);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public Long getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(Long providerId) {
-        this.providerId = providerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getPriceOriginal() {
-        return priceOriginal;
-    }
-
-    public void setPriceOriginal(Integer priceOriginal) {
-        this.priceOriginal = priceOriginal;
-    }
-
-    public Integer getPriceDiscount() {
-        return priceDiscount;
-    }
-
-    public void setPriceDiscount(Integer priceDiscount) {
-        this.priceDiscount = priceDiscount;
-    }
-
-    public int getPoint() {
-        return point;
-    }
-
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
-    public String getTopImageUrl() {
-        return topImageUrl;
-    }
-
-    public void setTopImageUrl(String topImageUrl) {
-        this.topImageUrl = topImageUrl;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public Set<ProductBadge> getProductBadges() {
-        return productBadges;
-    }
-
-    public void setProductBadges(Set<ProductBadge> productBadges) {
-        this.productBadges = productBadges;
-    }
-
-    public Set<ProductImage> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<ProductImage> images) {
-        this.images = images;
-    }
-
-    public Set<ProductCategory> getProductCategories() {
-        return productCategories;
-    }
-
-    public void setProductCategories(Set<ProductCategory> productCategories) {
-        this.productCategories = productCategories;
     }
 }

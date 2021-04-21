@@ -1,7 +1,12 @@
 package team16.sidedish.domain.entity.lookUp;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"name"})
 public class Badge {
     @Id
     private Integer id;
@@ -9,18 +14,6 @@ public class Badge {
     private String name;
 
     public Badge(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 }
