@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class DeliveryType {
     @Id
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -12,7 +12,7 @@ public class DeliveryType {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
