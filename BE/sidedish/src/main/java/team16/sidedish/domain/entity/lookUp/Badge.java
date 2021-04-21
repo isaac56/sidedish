@@ -2,11 +2,9 @@ package team16.sidedish.domain.entity.lookUp;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Objects;
-
 public class Badge {
     @Id
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -14,12 +12,8 @@ public class Badge {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
