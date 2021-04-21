@@ -24,7 +24,7 @@ class ProductRepositoryTest {
     @Test
     @DisplayName("저장 테스트")
     public void saveTest() {
-        Product test = new Product(1L, "사계절 건강식당 작은상", "마포엄마들이 사랑해온 건강반찬"
+        Product test = new Product(1L, "AAAAA", "사계절 건강식당 작은상", "마포엄마들이 사랑해온 건강반찬"
                 , 10000, 9000, 10, "https://cdn.bmf.kr/_data/product/201410/13/b8b0a0aba3386f030155b6cb0c1c75fa.jpg", 10);
 
         test = productRepository.save(test);

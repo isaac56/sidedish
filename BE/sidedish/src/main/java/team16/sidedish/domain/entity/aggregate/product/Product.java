@@ -10,6 +10,8 @@ public class Product {
     @Id
     private Long id;
 
+    private String hash;
+
     private Long providerId;
 
     private String name;
@@ -35,8 +37,9 @@ public class Product {
     @MappedCollection(idColumn = "product_id")
     private Set<ProductCategory> productCategories = new HashSet<>();
 
-    public Product(Long providerId, String name, String description, Integer priceOriginal, Integer priceDiscount, int point, String topImageUrl, int stock) {
+    public Product(Long providerId, String hash, String name, String description, Integer priceOriginal, Integer priceDiscount, int point, String topImageUrl, int stock) {
         this.providerId = providerId;
+        this.hash = hash;
         this.name = name;
         this.description = description;
         this.priceOriginal = priceOriginal;
@@ -78,6 +81,14 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
     public Long getProviderId() {
