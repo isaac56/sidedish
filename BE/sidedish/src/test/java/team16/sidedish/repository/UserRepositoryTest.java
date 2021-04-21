@@ -13,8 +13,6 @@ import team16.sidedish.domain.entity.aggregate.user.User;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Transactional
 @SpringBootTest
 class UserRepositoryTest {
@@ -28,15 +26,13 @@ class UserRepositoryTest {
     @Test
     @DisplayName("user save 테스트")
     public void save() {
-        userRepository.deleteAll();
-
-        User user = new User("isaac56@naver.com","test");
+        User user = new User("isaac56@naver.com", "test");
         user = userRepository.save(user);
 
-        user.addCart(new Cart(1L,1));
+        user.addCart(new Cart(1L, 1));
 
         Order order = new Order(LocalDateTime.now());
-        order.addProduct(new OrderProduct(1L,1));
+        order.addProduct(new OrderProduct(1L, 1));
         user.addOrder(order);
 
         user = userRepository.save(user);

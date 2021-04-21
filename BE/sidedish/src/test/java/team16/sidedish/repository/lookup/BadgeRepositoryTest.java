@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import team16.sidedish.domain.entity.lookUp.Badge;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Transactional
 @SpringBootTest
 class BadgeRepositoryTest {
@@ -22,9 +20,7 @@ class BadgeRepositoryTest {
 
     @Test
     @DisplayName("Badge 저장 테스트")
-    public void save(){
-        badgeRepository.deleteAll();
-
+    public void save() {
         Badge badge = new Badge("이벤트 특가");
         badge = badgeRepository.save(badge);
         Assertions.assertThat(badge.getId()).isNotNull();
