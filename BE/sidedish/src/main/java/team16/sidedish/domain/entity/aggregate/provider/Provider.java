@@ -16,7 +16,7 @@ public class Provider {
 
     private Integer deliveryFreePrice;
 
-    @MappedCollection(idColumn = "product_id")
+    @MappedCollection(idColumn = "provider_id")
     private final Set<ProviderDeliveryType> deliveryTypes = new HashSet<>();
 
     public Provider(String name, Integer deliveryFee, Integer deliveryFreePrice) {

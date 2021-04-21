@@ -1,17 +1,19 @@
 package team16.sidedish.domain.entity.aggregate.provider;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-public class ProviderDeliveryType{
+@Table("provider_has_delivery_type")
+public class ProviderDeliveryType {
     @Id
     private Long id;
 
     private Long providerId;
 
-    private Integer deliveryType;
+    private Integer deliveryTypeId;
 
-    public ProviderDeliveryType(Integer deliveryType) {
-        this.deliveryType = deliveryType;
+    public ProviderDeliveryType(Integer deliveryTypeId) {
+        this.deliveryTypeId = deliveryTypeId;
     }
 
     public Long getId() {
@@ -22,11 +24,11 @@ public class ProviderDeliveryType{
         return providerId;
     }
 
-    public Integer getDeliveryType() {
-        return deliveryType;
+    public Integer getDeliveryTypeId() {
+        return deliveryTypeId;
     }
 
-    public void setDeliveryType(Integer deliveryType) {
-        this.deliveryType = deliveryType;
+    public void setDeliveryTypeId(Integer deliveryTypeId) {
+        this.deliveryTypeId = deliveryTypeId;
     }
 }
