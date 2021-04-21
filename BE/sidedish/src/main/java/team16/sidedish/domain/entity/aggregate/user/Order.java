@@ -1,13 +1,19 @@
 package team16.sidedish.domain.entity.aggregate.user;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id
     private Long id;
@@ -33,40 +39,12 @@ public class Order {
 
     public void addProduct(OrderProduct... orderProducts) {
         for (OrderProduct orderProduct : orderProducts) {
+            orderProduct.setOrderId(this.id);
             this.products.add(orderProduct);
         }
     }
 
     public void removeProduct(OrderProduct orderProduct) {
         this.products.remove(orderProduct);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-        Order order = (Order) o;
-        return Objects.equals(getId(), order.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
     }
 }

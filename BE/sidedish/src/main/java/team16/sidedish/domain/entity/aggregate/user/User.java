@@ -1,11 +1,16 @@
 package team16.sidedish.domain.entity.aggregate.user;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"email"})
 public class User {
     @Id
     private Long id;
@@ -43,6 +48,7 @@ public class User {
 
     public void addOrder(Order... orders) {
         for (Order order : orders) {
+            order.setUserId(this.id);
             this.orders.add(order);
         }
     }
@@ -51,31 +57,15 @@ public class User {
         this.orders.remove(order.getId());
     }
 
-    public void addCart(Cart cart) {
-        this.carts.add(cart);
+    public void addCart(Cart... carts) {
+        for (Cart cart : carts) {
+            cart.setUserId(this.id);
+            this.carts.add(cart);
+        }
+
     }
 
     public void removeCart(Cart cart) {
         this.carts.remove(cart);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
