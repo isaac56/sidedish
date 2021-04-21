@@ -27,13 +27,13 @@ public class Product {
     private int stock;
 
     @MappedCollection(idColumn = "product_id")
-    private final Set<ProductBadge> productBadges = new HashSet<>();
+    private Set<ProductBadge> productBadges = new HashSet<>();
 
     @MappedCollection(idColumn = "product_id")
-    private final Set<ProductImage> images = new HashSet<>();
+    private Set<ProductImage> images = new HashSet<>();
 
     @MappedCollection(idColumn = "product_id")
-    private final Set<ProductCategory> productCategories = new HashSet<>();
+    private Set<ProductCategory> productCategories = new HashSet<>();
 
     public Product(Long providerId, String name, String description, Integer priceOriginal, Integer priceDiscount, int point, String topImageUrl, int stock) {
         this.providerId = providerId;
@@ -46,33 +46,33 @@ public class Product {
         this.stock = stock;
     }
 
-    public void addImage(ProductImage... images){
-        for(ProductImage image : images){
+    public void addImage(ProductImage... images) {
+        for (ProductImage image : images) {
             this.images.add(image);
         }
     }
 
-    public void removeImage(ProductImage image){
+    public void removeImage(ProductImage image) {
         this.images.remove(image);
     }
 
-    public void addBadgeRef(ProductBadge... productBadges){
-        for(ProductBadge productBadge : productBadges){
+    public void addBadgeRef(ProductBadge... productBadges) {
+        for (ProductBadge productBadge : productBadges) {
             this.productBadges.add(productBadge);
         }
     }
 
-    public void removeBadgeRef(ProductBadge productBadge){
+    public void removeBadgeRef(ProductBadge productBadge) {
         this.productBadges.remove(productBadge);
     }
 
-    public void addCategoryRef(ProductCategory... productCategories){
-        for(ProductCategory productCategory : productCategories){
+    public void addCategoryRef(ProductCategory... productCategories) {
+        for (ProductCategory productCategory : productCategories) {
             this.productCategories.add(productCategory);
         }
     }
 
-    public void removeCategoryRef(ProductCategory productCategory){
+    public void removeCategoryRef(ProductCategory productCategory) {
         this.productCategories.remove(productCategory);
     }
 
@@ -148,11 +148,23 @@ public class Product {
         return productBadges;
     }
 
+    public void setProductBadges(Set<ProductBadge> productBadges) {
+        this.productBadges = productBadges;
+    }
+
     public Set<ProductImage> getImages() {
         return images;
     }
 
+    public void setImages(Set<ProductImage> images) {
+        this.images = images;
+    }
+
     public Set<ProductCategory> getProductCategories() {
         return productCategories;
+    }
+
+    public void setProductCategories(Set<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
     }
 }
