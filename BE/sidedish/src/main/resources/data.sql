@@ -13,3 +13,4 @@ INSERT INTO `sidedish`.`badge` (`name`) VALUES ('베스트');
 INSERT INTO `sidedish`.`delivery_type` (`name`) VALUES ('새벽배송');
 INSERT INTO `sidedish`.`delivery_type` (`name`) VALUES ('전국택배');
 INSERT INTO `sidedish`.`provider` (`name`, `delivery_fee`, `delivery_free_price`) VALUES ('동네부엌', '2500', '40000');
+INSERT INTO `sidedish`.`product` (`provider_id`, `name`, `description`, `price_original`, `price_discount`, `point`, `top_image_url`, `stock`) VALUES ('1', '사계절 건강식당 작은상', '마포엄마들이 사랑해 온 건강반찬', '10000', '9000', '10', 'https://cdn.bmf.kr/_data/product/201410/13/b8b0a0aba3386f030155b6cb0c1c75fa.jpg', '10');
