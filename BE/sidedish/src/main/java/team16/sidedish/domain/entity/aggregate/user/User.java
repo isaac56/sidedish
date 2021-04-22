@@ -1,11 +1,16 @@
 package team16.sidedish.domain.entity.aggregate.user;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"email"})
 public class User {
     @Id
     private Long id;
@@ -15,10 +20,10 @@ public class User {
     private String password;
 
     @MappedCollection(idColumn = "user_id")
-    private final Set<Order> orders = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
     @MappedCollection(idColumn = "user_id")
-    private final Set<Cart> carts = new HashSet<>();
+    private Set<Cart> carts = new HashSet<>();
 
     public User(String email, String password) {
         this.email = email;
@@ -29,45 +34,38 @@ public class User {
         return orders;
     }
 
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     public Set<Cart> getCarts() {
         return carts;
     }
 
-    public void addOrder(Order... orders){
-        for(Order order: orders){
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public void addOrder(Order... orders) {
+        for (Order order : orders) {
+            order.setUserId(this.id);
             this.orders.add(order);
         }
     }
 
-    public void removeOrder(Order order){
+    public void removeOrder(Order order) {
         this.orders.remove(order.getId());
     }
 
-    public void addCart(Cart cart){
-        this.carts.add(cart);
+    public void addCart(Cart... carts) {
+        for (Cart cart : carts) {
+            cart.setUserId(this.id);
+            this.carts.add(cart);
+        }
+
     }
 
-    public void removeCart(Cart cart){
+    public void removeCart(Cart cart) {
         this.carts.remove(cart);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

@@ -1,10 +1,13 @@
 package team16.sidedish.domain.entity.aggregate.product;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Objects;
-
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"categoryId", "productId"})
 @Table("category_has_product")
 public class ProductCategory {
     @Id
@@ -16,34 +19,5 @@ public class ProductCategory {
 
     public ProductCategory(Integer categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProductCategory)) return false;
-        ProductCategory that = (ProductCategory) o;
-        return Objects.equals(getCategoryId(), that.getCategoryId()) && Objects.equals(getProductId(), that.getProductId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCategoryId(), getProductId());
     }
 }
