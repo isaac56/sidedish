@@ -3,8 +3,10 @@ package team16.sidedish;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-@ComponentScan(basePackages = {"team16.dummy"})
+@EnableScheduling
+@ComponentScan(basePackages = {"team16"})
 @SpringBootApplication
 public class SidedishApplication {
 
