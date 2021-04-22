@@ -1,11 +1,9 @@
 package team16.sidedish.dto.response;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import team16.sidedish.domain.entity.lookUp.Category;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * {
@@ -64,11 +62,19 @@ import java.util.List;
  * }
  */
 
+@Builder
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BestMenuResponseDto {
-    private String categoryId;
+    private Integer categoryId;
     private String name;
-    private List<MenuResponseDto> items;
+    private Set<MenuResponseDto> items;
+
+    public static BestMenuResponseDto of(Category category) {
+        return BestMenuResponseDto.builder()
+                .categoryId(category.getId())
+                .name(category.getName())
+//                .items()
+                .build();
+    }
 }

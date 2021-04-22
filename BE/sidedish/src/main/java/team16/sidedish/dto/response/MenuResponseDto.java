@@ -1,11 +1,12 @@
 package team16.sidedish.dto.response;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import team16.sidedish.domain.entity.aggregate.product.Product;
+import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
+import team16.sidedish.domain.entity.aggregate.provider.Provider;
+import team16.sidedish.domain.entity.aggregate.provider.ProviderDeliveryType;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * {
@@ -26,17 +27,36 @@ import java.util.List;
  * }
  */
 
+@Builder
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MenuResponseDto {
     private String detailHash;
     private String image; // url
-    private String alt;
-    private List<String> deliveryType;
-    private String title;
-    private String description;
-    private String nPrice;
-    private String sPrice;
-    private List<String> badge;
+    private String alt; // [provider_name] + product_name
+    private Set<ProviderDeliveryType> deliveryType;
+    private String title; // same as alt
+    private String description; // description
+    private String nPrice; // price_original
+    private String sPrice; // price_discount
+    private Set<ProductBadge> badge;
+
+    /**
+     *
+     * @param product
+     * @param provider
+     * @return
+     */
+    public static MenuResponseDto of(Product product, Provider provider) {
+        return MenuResponseDto.builder()
+                .detailHash("TEMP")
+                .image(product.getTopImageUrl())
+                .alt("[" + provider.getName() + "] " + product.getName())
+                .deliveryType(provider.getDeliveryTypes())
+                .title("[" + provider.getName() + "] " + product.getName())
+                .nPrice(product.getPriceOriginal() + "")
+                .sPrice(product.getPriceDiscount() + "원")
+                .badge(product.getProductBadges())
+                .build();
+    }
 }

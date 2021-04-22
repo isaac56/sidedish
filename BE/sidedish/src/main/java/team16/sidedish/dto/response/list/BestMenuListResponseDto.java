@@ -1,16 +1,19 @@
 package team16.sidedish.dto.response.list;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import team16.sidedish.dto.response.BestMenuResponseDto;
 
-import java.util.List;
+import java.util.Set;
 
+@Builder
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BestMenuListResponseDto {
-    private List<BestMenuResponseDto> body;
+    private Set<BestMenuResponseDto> body;
+
+    public static BestMenuListResponseDto of() {
+        return BestMenuListResponseDto.builder()
+//                .body()
+                .build();
+    }
 }
