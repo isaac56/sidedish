@@ -11,6 +11,8 @@ import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
 import team16.sidedish.domain.entity.aggregate.product.ProductCategory;
 import team16.sidedish.domain.entity.aggregate.product.ProductImage;
 
+import java.util.List;
+
 @Transactional
 @SpringBootTest
 class ProductRepositoryTest {
@@ -37,5 +39,11 @@ class ProductRepositoryTest {
         Assertions.assertThat(test.getProductBadges().size()).isEqualTo(1);
         Assertions.assertThat(test.getImages().size()).isEqualTo(1);
         Assertions.assertThat(test.getProductCategories().size()).isEqualTo(1);
+    }
+
+    @Test
+    public void test(){
+        List<Product> products = this.productRepository.findAllByCategoryId(1);
+        Assertions.assertThat(products.size()).isEqualTo(3);
     }
 }

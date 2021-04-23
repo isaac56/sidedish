@@ -3,7 +3,7 @@ package team16.sidedish.dto.response;
 import lombok.*;
 import team16.sidedish.domain.entity.lookUp.Category;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * {
@@ -66,15 +66,15 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BestMenuResponseDto {
-    private Integer categoryId;
+    private String categoryId;
     private String name;
-    private Set<MenuResponseDto> items;
+    private List<MenuResponseDto> items;
 
-    public static BestMenuResponseDto of(Category category) {
+    public static BestMenuResponseDto of(Category category, List<MenuResponseDto> menuResponseDtos) {
         return BestMenuResponseDto.builder()
-                .categoryId(category.getId())
+                .categoryId(String.valueOf(category.getId()))
                 .name(category.getName())
-//                .items()
+                .items(menuResponseDtos)
                 .build();
     }
 }
