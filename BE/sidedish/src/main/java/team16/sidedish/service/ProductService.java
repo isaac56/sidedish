@@ -10,6 +10,7 @@ import team16.sidedish.repository.ProviderRepository;
 import team16.sidedish.repository.lookup.BadgeRepository;
 import team16.sidedish.repository.lookup.DeliveryTypeRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,15 +29,13 @@ public class ProductService {
     }
 
     public MenuListResponseDto menu() {
-        MenuListResponseDto menuListResponseDto = new MenuListResponseDto();
         List<Product> products = (List<Product>) productRepository.findAll();
-        Set<MenuResponseDto> menuResponseDtoSet = new HashSet<>();
+        List<MenuResponseDto> menuResponseDtos = new ArrayList<>();
         for (Product product : products) {
             Provider provider = getProviderByProduct(product);
-            menuResponseDtoSet.add(MenuResponseDto.of(product, provider));
+            menuResponseDtos.add(MenuResponseDto.of(product, provider));
         }
-        menuListResponseDto.setBody(menuResponseDtoSet);
-        return menuListResponseDto;
+        return MenuListResponseDto.of(menuResponseDtos);
     }
 
     private Provider getProviderByProduct(Product product) {

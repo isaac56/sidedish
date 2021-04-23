@@ -6,7 +6,6 @@ import team16.sidedish.domain.entity.aggregate.provider.Provider;
 import team16.sidedish.utils.DtoUtils;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * {
@@ -44,10 +43,9 @@ public class MenuResponseDto {
     /**
      * @param product
      * @param provider
-     * @return
+     * @return MenuResponseDto
      */
     public static MenuResponseDto of(Product product, Provider provider) {
-
         return MenuResponseDto.builder()
                 .detailHash(product.getHash())
                 .image(product.getTopImageUrl())

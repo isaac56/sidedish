@@ -1,16 +1,24 @@
 package team16.sidedish.dto.response.list;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import team16.sidedish.dto.response.MenuResponseDto;
 
-import java.util.Set;
+import java.util.List;
 
+@Builder
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MenuListResponseDto {
-    private Set<MenuResponseDto> body;
+    private List<MenuResponseDto> body;
+
+    /**
+     *
+     * @param menuResponseDtos
+     * @return MenuListResponseDto
+     */
+    public static MenuListResponseDto of(List<MenuResponseDto> menuResponseDtos) {
+        return MenuListResponseDto.builder()
+                .body(menuResponseDtos)
+                .build();
+    }
 }
