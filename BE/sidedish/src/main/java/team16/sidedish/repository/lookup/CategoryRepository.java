@@ -9,5 +9,9 @@ import java.util.Optional;
 public interface CategoryRepository extends CrudRepository<Category, Integer> {
     List<Category> findAll();
 
+    List<Category> findAllByIsBestIsTrue();
+
     Optional<Category> findByName(String name);
+
+    boolean existsByIdAndIsBestIsTrue(Integer id);
 }
