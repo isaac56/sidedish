@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import team16.sidedish.domain.entity.aggregate.product.BadgeRef;
+import team16.sidedish.domain.entity.aggregate.product.CategoryRef;
 import team16.sidedish.domain.entity.aggregate.product.Product;
-import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
-import team16.sidedish.domain.entity.aggregate.product.ProductCategory;
 import team16.sidedish.domain.entity.aggregate.product.ProductImage;
 
 @Transactional
@@ -30,12 +30,12 @@ class ProductRepositoryTest {
         test = productRepository.save(test);
 
         test.addImage(new ProductImage("asdf", false));
-        test.addBadgeRef(new ProductBadge(1));
-        test.addCategoryRef(new ProductCategory(1));
+        test.addBadgeRef(new BadgeRef(1));
+        test.addCategoryRef(new CategoryRef(1));
         test = productRepository.save(test);
 
-        Assertions.assertThat(test.getProductBadges().size()).isEqualTo(1);
+        Assertions.assertThat(test.getBadgeRefs().size()).isEqualTo(1);
         Assertions.assertThat(test.getImages().size()).isEqualTo(1);
-        Assertions.assertThat(test.getProductCategories().size()).isEqualTo(1);
+        Assertions.assertThat(test.getCategoryRefs().size()).isEqualTo(1);
     }
 }

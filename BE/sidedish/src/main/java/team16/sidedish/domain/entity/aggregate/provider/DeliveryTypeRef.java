@@ -8,10 +8,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = {"deliveryTypeId"})
 @Table("provider_has_delivery_type")
-public class ProviderDeliveryType {
+public class DeliveryTypeRef {
     private Integer deliveryTypeId;
 
-    public ProviderDeliveryType(Integer deliveryTypeId) {
+    public DeliveryTypeRef(Integer deliveryTypeId) {
         this.deliveryTypeId = deliveryTypeId;
     }
 }

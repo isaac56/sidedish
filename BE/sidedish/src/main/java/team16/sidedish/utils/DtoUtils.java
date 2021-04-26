@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import team16.sidedish.domain.entity.aggregate.product.BadgeRef;
 import team16.sidedish.domain.entity.aggregate.product.Product;
-import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
+import team16.sidedish.domain.entity.aggregate.provider.DeliveryTypeRef;
 import team16.sidedish.domain.entity.aggregate.provider.Provider;
-import team16.sidedish.domain.entity.aggregate.provider.ProviderDeliveryType;
 import team16.sidedish.domain.entity.lookUp.Badge;
 import team16.sidedish.domain.entity.lookUp.DeliveryType;
 import team16.sidedish.repository.lookup.BadgeRepository;
@@ -45,10 +45,10 @@ public class DtoUtils {
     }
 
     public static List<String> getDeliveryTypeNamesFrom(Provider provider) {
-        Set<ProviderDeliveryType> providerDeliveryTypes = provider.getDeliveryTypes();
+        Set<DeliveryTypeRef> deliveryTypeRefs = provider.getDeliveryTypeRefs();
         List<String> deliveryTypeNames = new ArrayList<>();
-        for (ProviderDeliveryType providerDeliveryType : providerDeliveryTypes) {
-            String deliveryTypeName = getDeliveryTypeNameById(providerDeliveryType.getDeliveryTypeId());
+        for (DeliveryTypeRef deliveryTypeRef : deliveryTypeRefs) {
+            String deliveryTypeName = getDeliveryTypeNameById(deliveryTypeRef.getDeliveryTypeId());
             deliveryTypeNames.add(deliveryTypeName);
         }
         return deliveryTypeNames;
@@ -65,10 +65,10 @@ public class DtoUtils {
     }
 
     public static List<String> getBadgeNamesFrom(Product product) {
-        Set<ProductBadge> productBadges = product.getProductBadges();
+        Set<BadgeRef> badgeRefs = product.getBadgeRefs();
         List<String> badgeNames = new ArrayList<>();
-        for (ProductBadge productBadge : productBadges) {
-            String badgeName = getBadgeNameById(productBadge.getBadgeId());
+        for (BadgeRef badgeRef : badgeRefs) {
+            String badgeName = getBadgeNameById(badgeRef.getBadgeId());
             badgeNames.add(badgeName);
         }
         return badgeNames;

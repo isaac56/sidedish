@@ -8,10 +8,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = {"categoryId"})
 @Table("product_has_category")
-public class ProductCategory {
+public class CategoryRef {
     private Integer categoryId;
 
-    public ProductCategory(Integer categoryId) {
+    public CategoryRef(Integer categoryId) {
         this.categoryId = categoryId;
     }
 }
