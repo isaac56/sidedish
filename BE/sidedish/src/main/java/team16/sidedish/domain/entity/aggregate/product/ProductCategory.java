@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = {"categoryId"})
-@Table("category_has_product")
+@Table("product_has_category")
 public class ProductCategory {
     private Integer categoryId;
 
