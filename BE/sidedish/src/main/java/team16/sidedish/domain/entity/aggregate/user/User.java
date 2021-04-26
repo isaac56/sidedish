@@ -59,7 +59,6 @@ public class User {
 
     public void addCart(Cart... carts) {
         for (Cart cart : carts) {
-            cart.setUserId(this.id);
             this.carts.add(cart);
         }
 

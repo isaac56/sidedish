@@ -32,7 +32,6 @@ public class Provider {
 
     public void addDeliveryType(ProviderDeliveryType... providerDeliveryTypes) {
         for (ProviderDeliveryType providerDeliveryType : providerDeliveryTypes) {
-            providerDeliveryType.setProviderId(this.id);
             this.deliveryTypes.add(providerDeliveryType);
         }
     }

@@ -67,7 +67,6 @@ public class Product {
 
     public void addBadgeRef(ProductBadge... productBadges) {
         for (ProductBadge productBadge : productBadges) {
-            productBadge.setProductId(this.id);
             this.productBadges.add(productBadge);
         }
     }
@@ -78,7 +77,6 @@ public class Product {
 
     public void addCategoryRef(ProductCategory... productCategories) {
         for (ProductCategory productCategory : productCategories) {
-            productCategory.setProductId(this.id);
             this.productCategories.add(productCategory);
         }
     }
