@@ -76,13 +76,13 @@ public class DummyService {
         return category;
     }
 
-    private DeliveryType addDeliveryType(String name) {
+    private DeliveryType addDeliveryType(String name, String message) {
         DeliveryType existDeliveryType = deliveryTypeRepository.findByName(name).orElse(null);
         if (existDeliveryType != null) {
             return existDeliveryType;
         }
 
-        DeliveryType deliveryType = deliveryTypeRepository.save(new DeliveryType(name));
+        DeliveryType deliveryType = deliveryTypeRepository.save(new DeliveryType(name, message));
         return deliveryType;
     }
 
@@ -110,7 +110,7 @@ public class DummyService {
             Provider provider = addProvider(new Provider(simpleData.getProvider(), 2500, 40000));
             if (simpleData.getDelivery_type() != null) {
                 for (String deliveryTypeName : simpleData.getDelivery_type()) {
-                    DeliveryType deliveryType = addDeliveryType(deliveryTypeName);
+                    DeliveryType deliveryType = addDeliveryType(deliveryTypeName, "");
 
                     provider.addDeliveryTypeRef(new DeliveryTypeRef(deliveryType.getId()));
                 }

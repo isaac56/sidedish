@@ -13,7 +13,12 @@ public class DeliveryType {
 
     private String name;
 
-    public DeliveryType(String name) {
+    private String message;
+
+    public DeliveryType(String name, String message) {
         this.name = name;
+        this.message = message;
     }
+
+
 }

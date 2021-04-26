@@ -21,7 +21,7 @@ class DeliveryTypeRepositoryTest {
     @Test
     @DisplayName("DeliveryType save 테스트")
     public void save() {
-        DeliveryType deliveryType = new DeliveryType("퀵배송");
+        DeliveryType deliveryType = new DeliveryType("퀵배송", "빠른 퀵배송이 가능합니다");
         deliveryType = deliveryTypeRepository.save(deliveryType);
         Assertions.assertThat(deliveryType.getId()).isNotNull();
     }
