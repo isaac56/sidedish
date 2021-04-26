@@ -40,4 +40,9 @@ public class ProductController {
     public ResponseEntity<BestMenuResponseDto> bestMenu(@PathVariable Integer id) {
         return ResponseEntity.ok(productService.bestMenu(id));
     }
+
+    @GetMapping("/main")
+    public ResponseEntity<MenuResponseDto> mainMenu() {
+        return null;
+    }
 }
