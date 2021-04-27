@@ -69,15 +69,15 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class BestMenuResponseDto {
+public class CategoryResponseDto {
     private String categoryId;
     private String name;
     private List<MenuResponseDto> items;
 
-    public static BestMenuResponseDto of(Integer categoryId, List<MenuResponseDto> menuResponseDtos) {
+    public static CategoryResponseDto of(Integer categoryId, List<MenuResponseDto> menuResponseDtos) {
         Category category = LookUpTableUtils.getCategoryById(categoryId);
 
-        return BestMenuResponseDto.builder()
+        return CategoryResponseDto.builder()
                 .categoryId(String.valueOf(category.getId()))
                 .name(category.getName())
                 .items(menuResponseDtos)
