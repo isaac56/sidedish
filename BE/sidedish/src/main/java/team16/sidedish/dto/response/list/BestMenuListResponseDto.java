@@ -3,17 +3,17 @@ package team16.sidedish.dto.response.list;
 import lombok.*;
 import team16.sidedish.dto.response.BestMenuResponseDto;
 
-import java.util.Set;
+import java.util.List;
 
 @Builder
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BestMenuListResponseDto {
-    private Set<BestMenuResponseDto> body;
+    private List<BestMenuResponseDto> body;
 
-    public static BestMenuListResponseDto of() {
+    public static BestMenuListResponseDto of(List<BestMenuResponseDto> bestMenuResponseDtos) {
         return BestMenuListResponseDto.builder()
-//                .body()
+                .body(bestMenuResponseDtos)
                 .build();
     }
 }

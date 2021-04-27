@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import team16.sidedish.domain.entity.aggregate.provider.DeliveryTypeRef;
 import team16.sidedish.domain.entity.aggregate.provider.Provider;
-import team16.sidedish.domain.entity.aggregate.provider.ProviderDeliveryType;
 
 @Transactional
 @SpringBootTest
@@ -23,11 +23,11 @@ class ProviderRepositoryTest {
     @DisplayName("Provider save 테스트")
     public void save() {
         Provider provider = new Provider("오늘의밥상", 2000, 40000);
-        provider.addDeliveryType(new ProviderDeliveryType(1));
+        provider.addDeliveryTypeRef(new DeliveryTypeRef(1));
         provider = providerRepository.save(provider);
 
         Assertions.assertThat(provider.getId()).isNotNull();
-        Assertions.assertThat(provider.getDeliveryTypes().size()).isEqualTo(1);
+        Assertions.assertThat(provider.getDeliveryTypeRefs().size()).isEqualTo(1);
     }
 
 }

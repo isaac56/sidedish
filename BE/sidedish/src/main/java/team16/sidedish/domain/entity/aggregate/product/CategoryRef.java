@@ -1,23 +1,17 @@
 package team16.sidedish.domain.entity.aggregate.product;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EqualsAndHashCode(of = {"categoryId", "productId"})
-@Table("category_has_product")
-public class ProductCategory {
-    @Id
-    private Long id;
-
+@EqualsAndHashCode(of = {"categoryId"})
+@Table("product_has_category")
+public class CategoryRef {
     private Integer categoryId;
 
-    private Long productId;
-
-    public ProductCategory(Integer categoryId) {
+    public CategoryRef(Integer categoryId) {
         this.categoryId = categoryId;
     }
 }

@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 import team16.dummy.requestDTO.DetailData;
 import team16.dummy.requestDTO.DetailDataWrapper;
 import team16.dummy.requestDTO.SimpleData;
+import team16.sidedish.domain.entity.aggregate.product.BadgeRef;
+import team16.sidedish.domain.entity.aggregate.product.CategoryRef;
 import team16.sidedish.domain.entity.aggregate.product.Product;
-import team16.sidedish.domain.entity.aggregate.product.ProductBadge;
-import team16.sidedish.domain.entity.aggregate.product.ProductCategory;
 import team16.sidedish.domain.entity.aggregate.product.ProductImage;
+import team16.sidedish.domain.entity.aggregate.provider.DeliveryTypeRef;
 import team16.sidedish.domain.entity.aggregate.provider.Provider;
-import team16.sidedish.domain.entity.aggregate.provider.ProviderDeliveryType;
 import team16.sidedish.domain.entity.lookUp.Badge;
 import team16.sidedish.domain.entity.lookUp.Category;
 import team16.sidedish.domain.entity.lookUp.DeliveryType;
@@ -76,13 +76,13 @@ public class DummyService {
         return category;
     }
 
-    private DeliveryType addDeliveryType(String name) {
+    private DeliveryType addDeliveryType(String name, String message) {
         DeliveryType existDeliveryType = deliveryTypeRepository.findByName(name).orElse(null);
         if (existDeliveryType != null) {
             return existDeliveryType;
         }
 
-        DeliveryType deliveryType = deliveryTypeRepository.save(new DeliveryType(name));
+        DeliveryType deliveryType = deliveryTypeRepository.save(new DeliveryType(name, message));
         return deliveryType;
     }
 
@@ -110,9 +110,9 @@ public class DummyService {
             Provider provider = addProvider(new Provider(simpleData.getProvider(), 2500, 40000));
             if (simpleData.getDelivery_type() != null) {
                 for (String deliveryTypeName : simpleData.getDelivery_type()) {
-                    DeliveryType deliveryType = addDeliveryType(deliveryTypeName);
+                    DeliveryType deliveryType = addDeliveryType(deliveryTypeName, "");
 
-                    provider.addDeliveryType(new ProviderDeliveryType(deliveryType.getId()));
+                    provider.addDeliveryTypeRef(new DeliveryTypeRef(deliveryType.getId()));
                 }
             }
             providerRepository.save(provider);
@@ -124,11 +124,11 @@ public class DummyService {
             if (simpleData.getBadge() != null) {
                 for (String badgeName : simpleData.getBadge()) {
                     Badge badge = addBadge(badgeName);
-                    product.addBadgeRef(new ProductBadge(badge.getId()));
+                    product.addBadgeRef(new BadgeRef(badge.getId()));
                 }
             }
             Category category = addCategory(categoryName, isBest);
-            product.addCategoryRef(new ProductCategory(category.getId()));
+            product.addCategoryRef(new CategoryRef(category.getId()));
             productRepository.save(product);
         }
     }

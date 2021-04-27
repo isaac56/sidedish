@@ -22,7 +22,7 @@ public class Provider {
     private Integer deliveryFreePrice;
 
     @MappedCollection(idColumn = "provider_id")
-    private Set<ProviderDeliveryType> deliveryTypes = new HashSet<>();
+    private Set<DeliveryTypeRef> deliveryTypeRefs = new HashSet<>();
 
     public Provider(String name, Integer deliveryFee, Integer deliveryFreePrice) {
         this.name = name;
@@ -30,14 +30,13 @@ public class Provider {
         this.deliveryFreePrice = deliveryFreePrice;
     }
 
-    public void addDeliveryType(ProviderDeliveryType... providerDeliveryTypes) {
-        for (ProviderDeliveryType providerDeliveryType : providerDeliveryTypes) {
-            providerDeliveryType.setProviderId(this.id);
-            this.deliveryTypes.add(providerDeliveryType);
+    public void addDeliveryTypeRef(DeliveryTypeRef... deliveryTypeRefs) {
+        for (DeliveryTypeRef deliveryTypeRef : deliveryTypeRefs) {
+            this.deliveryTypeRefs.add(deliveryTypeRef);
         }
     }
 
-    public void removeDeliveryType(ProviderDeliveryType providerDeliveryType) {
-        this.deliveryTypes.remove(providerDeliveryType);
+    public void removeDeliveryTypeRef(DeliveryTypeRef deliveryTypeRef) {
+        this.deliveryTypeRefs.remove(deliveryTypeRef);
     }
 }

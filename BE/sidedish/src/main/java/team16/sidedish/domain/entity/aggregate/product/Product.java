@@ -34,13 +34,13 @@ public class Product {
     private int stock;
 
     @MappedCollection(idColumn = "product_id")
-    private Set<ProductBadge> productBadges = new HashSet<>();
+    private Set<BadgeRef> badgeRefs = new HashSet<>();
 
     @MappedCollection(idColumn = "product_id")
     private Set<ProductImage> images = new HashSet<>();
 
     @MappedCollection(idColumn = "product_id")
-    private Set<ProductCategory> productCategories = new HashSet<>();
+    private Set<CategoryRef> categoryRefs = new HashSet<>();
 
     public Product(Long providerId, String hash, String name, String description, Integer priceOriginal, Integer priceDiscount, int point, String topImageUrl, int stock) {
         this.providerId = providerId;
@@ -65,25 +65,23 @@ public class Product {
         this.images.remove(image);
     }
 
-    public void addBadgeRef(ProductBadge... productBadges) {
-        for (ProductBadge productBadge : productBadges) {
-            productBadge.setProductId(this.id);
-            this.productBadges.add(productBadge);
+    public void addBadgeRef(BadgeRef... badgeRefs) {
+        for (BadgeRef badgeRef : badgeRefs) {
+            this.badgeRefs.add(badgeRef);
         }
     }
 
-    public void removeBadgeRef(ProductBadge productBadge) {
-        this.productBadges.remove(productBadge);
+    public void removeBadgeRef(BadgeRef badgeRef) {
+        this.badgeRefs.remove(badgeRef);
     }
 
-    public void addCategoryRef(ProductCategory... productCategories) {
-        for (ProductCategory productCategory : productCategories) {
-            productCategory.setProductId(this.id);
-            this.productCategories.add(productCategory);
+    public void addCategoryRef(CategoryRef... productCategories) {
+        for (CategoryRef categoryRef : productCategories) {
+            this.categoryRefs.add(categoryRef);
         }
     }
 
-    public void removeCategoryRef(ProductCategory productCategory) {
-        this.productCategories.remove(productCategory);
+    public void removeCategoryRef(CategoryRef categoryRef) {
+        this.categoryRefs.remove(categoryRef);
     }
 }

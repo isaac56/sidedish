@@ -39,7 +39,6 @@ public class Order {
 
     public void addProduct(OrderProduct... orderProducts) {
         for (OrderProduct orderProduct : orderProducts) {
-            orderProduct.setOrderId(this.id);
             this.products.add(orderProduct);
         }
     }
