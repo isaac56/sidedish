@@ -28,6 +28,7 @@ public class DetailInfoResponseDto {
     private String deliveryFee;
     private List<String> prices;
     private List<String> detailSection;
+    private int stock;
 
     public static DetailInfoResponseDto of(Product product, Provider provider) {
         List<String> thumbImages = product.getImages().stream().filter(x -> !x.isDetail()).
@@ -53,6 +54,7 @@ public class DetailInfoResponseDto {
                 .deliveryFee(deliveryFee)
                 .prices(prices)
                 .detailSection(detailSection)
+                .stock(product.getStock())
                 .build();
     }
 
