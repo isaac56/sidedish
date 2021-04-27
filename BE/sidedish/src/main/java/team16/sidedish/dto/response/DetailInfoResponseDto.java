@@ -1,4 +1,4 @@
-package team16.sidedish.dto.response.detail;
+package team16.sidedish.dto.response;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class DetailInfoResponseDto {
+    private String hash;
     private String topImage;
     private List<String> thumbImages;
     private String productDescription;
@@ -43,6 +44,7 @@ public class DetailInfoResponseDto {
         prices.add(Integer.toString(product.getPriceDiscount()));
 
         return builder()
+                .hash(product.getHash())
                 .topImage(product.getTopImageUrl())
                 .thumbImages(thumbImages)
                 .productDescription(product.getDescription())
