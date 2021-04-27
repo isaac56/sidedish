@@ -11,8 +11,6 @@ import team16.sidedish.domain.entity.aggregate.user.Order;
 import team16.sidedish.domain.entity.aggregate.user.OrderProduct;
 import team16.sidedish.domain.entity.aggregate.user.User;
 
-import java.time.LocalDateTime;
-
 @Transactional
 @SpringBootTest
 class UserRepositoryTest {
@@ -31,7 +29,7 @@ class UserRepositoryTest {
 
         user.addCart(new Cart(1L, 1));
 
-        Order order = new Order(LocalDateTime.now());
+        Order order = new Order();
         order.addProduct(new OrderProduct(1L, 1));
         user.addOrder(order);
 

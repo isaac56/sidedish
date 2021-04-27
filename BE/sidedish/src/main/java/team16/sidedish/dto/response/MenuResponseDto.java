@@ -45,6 +45,8 @@ public class MenuResponseDto {
     private String nPrice; // price_original
     private String sPrice; // price_discount
     private List<String> badge;
+    private int stock;
+
 
     /**
      * @param product
@@ -68,6 +70,7 @@ public class MenuResponseDto {
                 .nPrice(product.getPriceOriginal() + "")
                 .sPrice(product.getPriceDiscount() + "원")
                 .badge(badgeNames)
+                .stock(product.getStock())
                 .build();
     }
 }
