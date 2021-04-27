@@ -5,11 +5,9 @@ import team16.sidedish.domain.entity.aggregate.product.Product;
 import team16.sidedish.domain.entity.aggregate.provider.Provider;
 import team16.sidedish.domain.entity.lookUp.Category;
 import team16.sidedish.domain.enums.CategoryEnum;
-import team16.sidedish.dto.response.BestMenuResponseDto;
+import team16.sidedish.dto.response.CategoryResponseDto;
+import team16.sidedish.dto.response.DetailInfoResponseDto;
 import team16.sidedish.dto.response.MenuResponseDto;
-import team16.sidedish.dto.response.detail.DetailResponseDto;
-import team16.sidedish.dto.response.list.BestMenuListResponseDto;
-import team16.sidedish.dto.response.list.MenuListResponseDto;
 import team16.sidedish.exception.NotFoundException;
 import team16.sidedish.repository.ProductRepository;
 import team16.sidedish.repository.ProviderRepository;
@@ -38,11 +36,11 @@ public class ProductService {
         this.categoryRepository = categoryRepository;
     }
 
-    public MenuListResponseDto getAllMenuList() {
+    public List<MenuResponseDto> getMenuListAll() {
         List<Product> products = productRepository.findAll();
 
         List<MenuResponseDto> menuResponseDtoList = getMenuResponseDtoList(products);
-        return MenuListResponseDto.of(menuResponseDtoList);
+        return menuResponseDtoList;
     }
 
     public MenuResponseDto getMenu(String hash) {
@@ -54,36 +52,28 @@ public class ProductService {
         return MenuResponseDto.of(product, provider);
     }
 
-    public BestMenuListResponseDto getBestAllMenuList() {
+    public List<CategoryResponseDto> getBestCategories() {
         List<Category> categories = categoryRepository.findAllByIsBestIsTrue();
 
-        List<BestMenuResponseDto> bestMenuResponseDtoList = new ArrayList<>();
+        List<CategoryResponseDto> categoryResponseDtoList = new ArrayList<>();
         for (Category category : categories) {
             List<Product> products = productRepository.findAllByCategoryId(category.getId());
 
             List<MenuResponseDto> menuResponseDtos = getMenuResponseDtoList(products);
-            bestMenuResponseDtoList.add(BestMenuResponseDto.of(category.getId(), menuResponseDtos));
+            categoryResponseDtoList.add(CategoryResponseDto.of(category.getId(), menuResponseDtos));
         }
 
-        return BestMenuListResponseDto.of(bestMenuResponseDtoList);
+        return categoryResponseDtoList;
     }
 
-    public BestMenuResponseDto getBestCategoryMenuList(Integer categoryId) {
-        if (!LookUpTableUtils.getCategoryById(categoryId).isBest()) {
-            throw new NotFoundException(categoryId + "는 베스트 메뉴 카테고리가 아닙니다.");
-        }
-
-        return BestMenuResponseDto.of(categoryId, getCategoryMenuList(categoryId));
+    public boolean isCategoryBest(Integer categoryId) {
+        return LookUpTableUtils.getCategoryById(categoryId).isBest();
     }
 
-    private List<MenuResponseDto> getCategoryMenuList(Integer categoryId) {
+    public CategoryResponseDto getCategory(Integer categoryId) {
         List<Product> products = productRepository.findAllByCategoryId(categoryId);
 
-        return getMenuResponseDtoList(products);
-    }
-
-    public MenuListResponseDto getMenuList(CategoryEnum categoryEnum) {
-        return MenuListResponseDto.of(getCategoryMenuList(categoryEnum.getId()));
+        return CategoryResponseDto.of(categoryId, getMenuResponseDtoList(products));
     }
 
     public MenuResponseDto getMenu(CategoryEnum categoryEnum, String hash) {
@@ -94,12 +84,12 @@ public class ProductService {
         return MenuResponseDto.of(product, provider);
     }
 
-    public DetailResponseDto getDetail(String hash) {
+    public DetailInfoResponseDto getDetail(String hash) {
         Product product = productRepository.findByHash(hash).
                 orElseThrow(() -> new NotFoundException(hash + " 제품이 존재하지 않습니다."));
         Provider provider = getProvider(product.getProviderId());
 
-        return DetailResponseDto.of(product, provider);
+        return DetailInfoResponseDto.of(product, provider);
     }
 
     private Provider getProvider(Long providerId) {
