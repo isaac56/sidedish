@@ -4,8 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -19,8 +18,8 @@ public class User {
 
     private String password;
 
-    @MappedCollection(idColumn = "user_id")
-    private Set<Order> orders = new HashSet<>();
+    @MappedCollection(idColumn = "user_id", keyColumn = "hash")
+    private Map<String, Order> orders = new HashMap<>();
 
     @MappedCollection(idColumn = "user_id")
     private Set<Cart> carts = new HashSet<>();
@@ -30,26 +29,15 @@ public class User {
         this.password = password;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    public Set<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(Set<Cart> carts) {
-        this.carts = carts;
+    public Optional<Order> getOrder(long orderId) {
+        Order order = this.orders.getOrDefault(orderId, null);
+        return Optional.ofNullable(order);
     }
 
     public void addOrder(Order... orders) {
         for (Order order : orders) {
-            order.setUserId(this.id);
-            this.orders.add(order);
+            String hash = this.id + "_" + (this.orders.size() + 1);
+            this.orders.put(hash, order);
         }
     }
 
@@ -61,7 +49,6 @@ public class User {
         for (Cart cart : carts) {
             this.carts.add(cart);
         }
-
     }
 
     public void removeCart(Cart cart) {
