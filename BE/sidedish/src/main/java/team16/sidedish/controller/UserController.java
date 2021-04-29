@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 import team16.sidedish.dto.GithubEmailDTO;
 import team16.sidedish.dto.GithubTokenDTO;
 import team16.sidedish.dto.response.ApiResult;
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/login/oauth2/code/github")
-    public ApiResult<String> login_GithubOauth(@PathParam("code") String code, HttpSession httpSession) {
+    public RedirectView login_GithubOauth(@PathParam("code") String code, HttpSession httpSession) {
         logger.debug("github authorization code: {}", code);
 
         GithubTokenDTO accessToken = loginService.getAccessToken(code);
@@ -46,7 +47,7 @@ public class UserController {
 
         HttpSessionUtils.setAccessToken(httpSession, accessToken.getAccessToken());
 
-        return ApiResult.succeed("OK");
+        return new RedirectView("http://localhost:3000");
     }
 
     @GetMapping("/valid")
@@ -65,7 +66,9 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public void logout(HttpSession httpSession) {
+    public ApiResult<String> logout(HttpSession httpSession) {
         HttpSessionUtils.removeAccessToken(httpSession);
+
+        return ApiResult.succeed("OK");
     }
 }

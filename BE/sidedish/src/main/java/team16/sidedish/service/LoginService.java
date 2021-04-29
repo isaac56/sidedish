@@ -68,7 +68,7 @@ public class LoginService {
         }
 
         if (emails == null || emails.isEmpty()) {
-            return null;
+            throw new RuntimeException("Github 인증에 실패하였습니다.");
         }
         return emails.get(0);
     }
