@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaSearch } from "react-icons/fa";
-import Login from "./login";
+import { FaSearch, FaGithub, FaGit } from "react-icons/fa";
+// import Login from "./login";
 
 const HeaderMain = styled.div`
   display: flex;
@@ -17,6 +17,18 @@ const MainNav = styled.ul`
   list-style: none;
   align-items: center;
 `;
+const HeaderLoginList = styled.li`
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin-left: 20px;
+  font-size: 20px;
+  /* &:hover {
+    display: none;
+    background-image: 
+  } */
+`;
 const HeaderList = styled.li`
   cursor: pointer;
   background-color: transparent;
@@ -28,6 +40,7 @@ const HeaderList = styled.li`
 const HeaderLeft = styled.div`
   display: flex;
   align-items: center;
+
 `;
 const Logo = styled.h1`
   font-size: 40px;
@@ -91,12 +104,25 @@ const DropBtn = styled.button`
     text-decoration: underline;
   }
 `;
+const LoginBox = styled.div`
+width: 60px;
+text-align: center;
+size: 100px;
+`;
+const LoginLink = styled.a`
+background: red;
+width:30px;
+size: 40px;
+text-decoration: none;
+color: black;
+`;
 const DropList = styled.li``;
 
 const Header = ({ loginModal, setLoginModal }) => {
   const [isShownDrop1, setIsShownDrop1] = useState(false);
   const [isShownDrop2, setIsShownDrop2] = useState(false);
   const [isShownDrop3, setIsShownDrop3] = useState(false);
+  const [isShownGithub, setIsShownGithub] = useState(false);
 
   const openLoginModal = () => {
     setLoginModal(true);
@@ -172,8 +198,12 @@ const Header = ({ loginModal, setLoginModal }) => {
             </SearchBtn>
           </Search>
         </HeaderList>
-        {loginModal && <Login setLoginModal={setLoginModal} />}
-        <HeaderList onClick={openLoginModal}>로그인</HeaderList>
+        <HeaderLoginList>
+          <LoginLink href={"https://github.com/login/oauth/authorize?client_id=Iv1.0905f186cda26835"} onMouseOver={() => setIsShownGithub(true)}
+              onMouseLeave={() => setIsShownGithub(false)}>
+                <LoginBox>{!isShownGithub && "로그인"}{isShownGithub && <FaGithub active={isShownGithub} size={50} />}</LoginBox>
+          </LoginLink>
+          </HeaderLoginList>
         <HeaderList>장바구니</HeaderList>
       </MainNav>
     </HeaderMain>
