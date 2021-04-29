@@ -2,7 +2,7 @@ package team16.sidedish.exception;
 
 public class NotAuthorizedException extends RuntimeException {
     public NotAuthorizedException() {
-        super();
+        super("권한이 없습니다.");
     }
 
     public NotAuthorizedException(String message) {
