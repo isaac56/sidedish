@@ -29,10 +29,10 @@ public class OrderService {
     }
 
     @Transactional
-    public void makeOrder(String productHash, int count, long userId) {
-        logger.debug("{}번 사용자가 {} 제품의 {}개 주문 요청", userId, productHash, count);
-        User user = userRepository.findById(userId).
-                orElseThrow(() -> new NotFoundException(userId + "번 사용자는 존재하지 않습니다."));
+    public void makeOrder(String productHash, int count, String userEmail) {
+        logger.debug("{} 사용자가 {} 제품의 {}개 주문 요청", userEmail, productHash, count);
+        User user = userRepository.findByEmail(userEmail).
+                orElseThrow(() -> new NotFoundException(userEmail + " 사용자는 존재하지 않습니다."));
         Product product = productRepository.findByHash(productHash)
                 .orElseThrow(() -> new NotFoundException(productHash + "의 제품은 존재하지 않습니다."));
 

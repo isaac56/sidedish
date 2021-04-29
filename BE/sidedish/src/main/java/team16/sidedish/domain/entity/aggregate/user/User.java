@@ -16,17 +16,14 @@ public class User {
 
     private String email;
 
-    private String password;
-
     @MappedCollection(idColumn = "user_id", keyColumn = "hash")
     private Map<String, Order> orders = new HashMap<>();
 
     @MappedCollection(idColumn = "user_id")
     private Set<Cart> carts = new HashSet<>();
 
-    public User(String email, String password) {
+    public User(String email) {
         this.email = email;
-        this.password = password;
     }
 
     public Optional<Order> getOrder(long orderId) {

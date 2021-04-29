@@ -24,7 +24,7 @@ class UserRepositoryTest {
     @Test
     @DisplayName("user save 테스트")
     public void save() {
-        User user = new User("isaac56@naver.com", "test");
+        User user = new User("isaac56@naver.com");
         user = userRepository.save(user);
 
         user.addCart(new Cart(1L, 1));
