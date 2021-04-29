@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import team16.sidedish.dto.GithubEmailDTO;
 import team16.sidedish.dto.request.OrderRequestDto;
 import team16.sidedish.dto.response.ApiResult;
+import team16.sidedish.exception.NotAuthorizedException;
+import team16.sidedish.service.LoginService;
 import team16.sidedish.service.OrderService;
+import team16.sidedish.service.UserService;
+import team16.sidedish.utils.HttpSessionUtils;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,16 +23,29 @@ import javax.servlet.http.HttpSession;
 public class OrderController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final OrderService orderService;
+    private final LoginService loginService;
+    private final UserService userService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, LoginService loginService, UserService userService) {
         this.orderService = orderService;
+        this.loginService = loginService;
+        this.userService = userService;
     }
 
     @PostMapping
     public ApiResult<String> createOrder(@RequestBody OrderRequestDto orderRequestDto, HttpSession httpSession) {
         logger.debug("orderRequestDto가 널? {}", orderRequestDto == null);
-        orderService.makeOrder(orderRequestDto.getProductHash(), orderRequestDto.getCount(), 1L);
+        String accessToken = HttpSessionUtils.getAccessToken(httpSession);
+        if (accessToken == null) {
+            throw new NotAuthorizedException();
+        }
+        GithubEmailDTO githubEmailDTO = loginService.getEmailFromGithub(accessToken);
+        if (githubEmailDTO == null) {
+            throw new NotAuthorizedException();
+        }
+
+        orderService.makeOrder(orderRequestDto.getProductHash(), orderRequestDto.getCount(), githubEmailDTO.getEmail());
 
         return ApiResult.succeed("OK");
     }
