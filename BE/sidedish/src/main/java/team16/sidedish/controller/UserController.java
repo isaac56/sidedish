@@ -40,7 +40,7 @@ public class UserController {
         GithubEmailDTO githubEmailDTO = loginService.getEmailFromGithub(accessToken.getAccessToken());
 
         //원래는 회원가입이 되어있지 않아서 로그인 실패가 되어야 하지만, 이 프로젝트에서는 자동 회원가입 시켜줌
-        if (userService.emailExist(githubEmailDTO.getEmail())) {
+        if (!userService.emailExist(githubEmailDTO.getEmail())) {
             // throw new NotFoundException(githubEmail.getEmail() +" 사용자는 존재하지 않습니다.");
             userService.createUser(githubEmailDTO.getEmail());
         }
@@ -60,6 +60,10 @@ public class UserController {
 
         GithubEmailDTO githubEmailDTO = loginService.getEmailFromGithub(accessToken);
         if (githubEmailDTO == null) {
+            return ApiResult.succeed(false);
+        }
+
+        if (!userService.emailExist(githubEmailDTO.getEmail())) {
             return ApiResult.succeed(false);
         }
         return ApiResult.succeed(true);
