@@ -13,7 +13,7 @@ const Main = ({ modal, setModal, ModalData, setModalData }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios
-        .get("/products/main")
+        .get("http://13.124.221.114:8080/products/main")
         .then((res) => res.data.data.items);
       setFood(data);
     };

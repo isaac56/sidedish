@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import styled from "styled-components";
-import { FaSearch, FaGithub, FaGit } from "react-icons/fa";
+import { FaSearch, FaGithub} from "react-icons/fa";
+import axios from "axios";
 // import Login from "./login";
+
 
 const HeaderMain = styled.div`
   display: flex;
@@ -93,7 +95,7 @@ const MenuBtn = styled.button`
   padding: 30px 0;
   position: relative;
 `;
-const DropBtn = styled.button`
+const DropBtn = styled.div`
   border: 0;
   outline: 0;
   background-color: transparent;
@@ -118,15 +120,40 @@ color: black;
 `;
 const DropList = styled.li``;
 
-const Header = ({ loginModal, setLoginModal }) => {
+const Header = () => {
   const [isShownDrop1, setIsShownDrop1] = useState(false);
   const [isShownDrop2, setIsShownDrop2] = useState(false);
   const [isShownDrop3, setIsShownDrop3] = useState(false);
   const [isShownGithub, setIsShownGithub] = useState(false);
 
-  const openLoginModal = () => {
-    setLoginModal(true);
+  const [isLogin, setIsLogin] = useState(1);
+  useEffect(() => {
+    const fetchData = async () => {
+      // axios.defaults.withCredentials = true;
+      const data = await axios
+        .get("http://13.124.221.114:8080/user/valid", {withCredentials: true})
+        .then((res) => res.data);
+      console.log("로그인 상태",data.data);
+      setIsLogin(data.data);
+    };
+    fetchData();
+  }, []); // eslint-disable-line
+  const apiPost = async () => {
+    if(isLogin == false) {
+      console.log('feijfeijfije');
+      // setIsLogin(true); // 자동
+      return;
+    }
+    if(isLogin == true) {
+      await axios.post(`http://13.124.221.114:8080/user/logout`);
+
+      // return setIsLogin(false) // 자동
+    }
   };
+
+  // const getUrl = () => {
+  //   return "https://github.com/login/oauth/authorize?client_id=Iv1.0905f186cda26835";
+  // }
 
   return (
     <HeaderMain>
@@ -199,9 +226,9 @@ const Header = ({ loginModal, setLoginModal }) => {
           </Search>
         </HeaderList>
         <HeaderLoginList>
-          <LoginLink href={"https://github.com/login/oauth/authorize?client_id=Iv1.0905f186cda26835"} onMouseOver={() => setIsShownGithub(true)}
+          <LoginLink href="https://github.com/login/oauth/authorize?client_id=Iv1.0905f186cda26835" onClick={apiPost} onMouseOver={() => setIsShownGithub(true)}
               onMouseLeave={() => setIsShownGithub(false)}>
-                <LoginBox>{!isShownGithub && "로그인"}{isShownGithub && <FaGithub active={isShownGithub} size={50} />}</LoginBox>
+                <LoginBox >{isLogin && "로그아웃"} {!isLogin && (!isShownGithub && "로그인")}{!isLogin && (isShownGithub && <FaGithub size={50} />)}</LoginBox>
           </LoginLink>
           </HeaderLoginList>
         <HeaderList>장바구니</HeaderList>

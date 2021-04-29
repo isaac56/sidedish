@@ -33,7 +33,7 @@ const PopUpModal = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios(`products/detail/${ModalData[0]}`).then(
+      const data = await axios(`http://13.124.221.114:8080/products/detail/${ModalData[0]}`).then(
         (res) => res.data.data
       );
       setDetail(data);

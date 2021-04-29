@@ -8,7 +8,6 @@ const App = () => {
   const [modal, setModal] = useState(false);
   const [ModalData, setModalData] = useState([]);
   const [loginModal, setLoginModal] = useState(false);
-
   return (
     <div>
       <Header loginModal={loginModal} setLoginModal={setLoginModal} />

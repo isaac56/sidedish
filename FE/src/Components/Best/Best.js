@@ -38,7 +38,7 @@ const Best = ({ modal, setModal, ModalData, setModalData }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios("/products/best").then((res) => res.data.data);
+      const data = await axios("http://13.124.221.114:8080//products/best").then((res) => res.data.data);
       setBest(data);
     };
     fetchData();

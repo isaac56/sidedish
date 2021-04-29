@@ -16,10 +16,10 @@ const All = ({ modal, setModal, ModalData, setModalData }) => {
   useEffect(() => {
     const fetchData = async () => {
       const soupData = await axios
-        .get("/products/soup")
+        .get("http://13.124.221.114:8080/products/soup")
         .then((res) => res.data.data.items);
       const sideData = await axios
-        .get("/products/side")
+        .get("http://13.124.221.114:8080/products/side")
         .then((res) => res.data.data.items);
       setSoup(soupData);
       setSide(sideData);
