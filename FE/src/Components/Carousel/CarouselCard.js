@@ -23,8 +23,12 @@ const CarouselCard = ({
   return (
     <ContentMain best={best} PopUp={PopUp}>
       <Image best={best} image={image} PopUp={PopUp} onClick={openModal} />
-      <Title>{title}</Title>
-      <Description>{description}</Description>
+      <Title best={best} PopUp={PopUp}>
+        {title}
+      </Title>
+      <Description best={best} PopUp={PopUp}>
+        {description}
+      </Description>
       {n_price !== undefined ? (
         <Price>
           <SPrice>{s_price}</SPrice>
@@ -33,7 +37,8 @@ const CarouselCard = ({
       ) : (
         <SPrice false>{s_price}</SPrice>
       )}
-      {badge !== undefined &&
+      {!PopUp &&
+        badge !== undefined &&
         badge.length !== 0 &&
         (badge.length <= 1 ? (
           <Badge badge={badge}>{badge}</Badge>
@@ -98,7 +103,10 @@ const Image = styled.div`
 
 const Title = styled.div`
   margin-top: 16px;
-
+  width: ${({ best, PopUp }) => (best ? `384px` : PopUp ? `160px` : `305px`)};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -108,8 +116,11 @@ const Title = styled.div`
 
 const Description = styled.div`
   margin-top: 8px;
+  width: ${({ best, PopUp }) => (best ? `384px` : PopUp ? `160px` : `305px`)};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   color: #828282;
-
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -117,7 +128,6 @@ const Description = styled.div`
 `;
 const NPrice = styled.span`
   width: 48px;
-
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -129,7 +139,6 @@ const NPrice = styled.span`
 
 const SPrice = styled.span`
   width: 73px;
-
   font-style: normal;
   font-weight: bold;
   font-size: 20px;

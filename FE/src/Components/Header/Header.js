@@ -80,7 +80,7 @@ const MenuBtn = styled.button`
   padding: 30px 0;
   position: relative;
 `;
-const DropBtn = styled.button`
+const DropBtn = styled.div`
   border: 0;
   outline: 0;
   background-color: transparent;

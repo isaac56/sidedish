@@ -28,6 +28,7 @@ const PopUpModal = ({
   const [quantity, setQuantity] = useState(0);
   const [toggleState, setToggleState] = useState();
   const [imgState, setState] = useState(1);
+  const [count, setCount] = useState(0);
   const PopUpRef = useRef(null);
   const PopUpCardRef = useRef();
 
@@ -89,11 +90,17 @@ const PopUpModal = ({
   };
 
   const leftSlider = () => {
-    PopUpCardRef.current.Slider(1);
+    if (count === 1) {
+      PopUpCardRef.current.Slider("PopUp", 1);
+      setCount(0);
+    }
   };
 
   const rightSlider = () => {
-    PopUpCardRef.current.Slider(-1);
+    if (count === 0) {
+      PopUpCardRef.current.Slider("PopUp", -1);
+      setCount(1);
+    }
   };
 
   return (
@@ -196,11 +203,13 @@ const PopUpModal = ({
             <CarouselSlide>
               <Button>
                 <CarouselButton
+                  count={count}
                   Name={"Left"}
                   Slide={leftSlider}
                   PopUp={"pop"}
                 />
                 <CarouselButton
+                  count={count}
                   Name={"Right"}
                   Slide={rightSlider}
                   PopUp={"pop"}
@@ -208,6 +217,8 @@ const PopUpModal = ({
               </Button>
               {Food && (
                 <Carousel
+                  count={count}
+                  setCount={setCount}
                   PopUp={"pop"}
                   MainTitle={MainTitle}
                   Food={PopUpCarousel}

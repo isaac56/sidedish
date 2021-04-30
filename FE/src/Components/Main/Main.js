@@ -20,12 +20,12 @@ const Main = ({ modal, setModal, ModalData, setModalData }) => {
     fetchData();
   }, []); // eslint-disable-line
 
-  const leftSlider = () => {
-    foodRef.current.Slider(1);
+  const leftSlider = (e) => {
+    foodRef.current.Slider(e, 1);
   };
 
-  const rightSlider = () => {
-    foodRef.current.Slider(-1);
+  const rightSlider = (e) => {
+    foodRef.current.Slider(e, -1);
   };
 
   const PopUpCarousel = () => {

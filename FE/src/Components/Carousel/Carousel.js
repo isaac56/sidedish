@@ -7,7 +7,17 @@ import React, {
 import styled from "styled-components";
 import CarouselCard from "./CarouselCard";
 const Carousel = (
-  { PopUp, MainTitle, Food, setFood, Ref, setModal, setModalData },
+  {
+    PopUp,
+    MainTitle,
+    Food,
+    setFood,
+    Ref,
+    setModal,
+    setModalData,
+    count,
+    setCount,
+  },
   ref
 ) => {
   const virtualImage = PopUp ? Food : Food.slice(Food.length - 4, Food.length); // 마지막부분 4개의 사진을 복사하여 0~4번 이미지를 만들어준다.
@@ -26,13 +36,11 @@ const Carousel = (
     if (transitionValue === "none") setTransitionValue(transitionDefault);
   }, [X]); // eslint-disable-line
 
-  const Slider = (direction) => {
-    if (PopUp) {
+  const Slider = (source, direction) => {
+    if (source === "PopUp") {
       if (moving) return;
       setX((prevX) =>
-        prevX
-          ? prevX + direction * panelWidth * panelCount
-          : direction * panelWidth * panelCount
+        prevX ? prevX + direction * panelWidth * 3 : direction * panelWidth * 3
       );
       setMoving(true);
     } else {
@@ -55,13 +63,14 @@ const Carousel = (
       setFood(result);
       setX(0);
     }
+    setMoving(false);
   };
 
   return (
     <Box PopUp={PopUp}>
       <CarouselTitle PopUp={PopUp}>{MainTitle}</CarouselTitle>
       {
-        <CarouselImage>
+        <CarouselImage PopUp={PopUp}>
           <Image
             PopUp={PopUp}
             ref={Ref}
@@ -122,7 +131,6 @@ const CarouselTitle = styled.div`
   width: 350px;
   height: 35px;
   margin: ${({ PopUp }) => (PopUp ? `10px 0` : `0 0 40px 0 `)};
-
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -131,13 +139,13 @@ const CarouselTitle = styled.div`
 
 const CarouselImage = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: ${({ PopUp }) => (PopUp ? `flex-start` : `center`)};
   overflow: hidden;
 `;
 
 const Image = styled.div`
   transform: ${({ PopUp, X }) =>
-    PopUp ? `translateX(${X - 100}px)` : `translateX(${X}px)`};
+    PopUp ? `translateX(${X - 10}px)` : `translateX(${X}px)`};
   transition: ${({ transitionValue }) => transitionValue};
   display: flex;
 `;

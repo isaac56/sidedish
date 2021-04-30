@@ -7,7 +7,7 @@ module.exports = function (app) {
     cors(
       "/api",
       createProxyMiddleware({
-        target: "http://3.35.230.0:8080",
+        target: "http://13.124.221.114:8080",
         changeOrigin: true,
       })
     )

@@ -33,14 +33,14 @@ const All = ({ modal, setModal, ModalData, setModalData }) => {
 
   const soupSlide = (e) => {
     e.target.classList.contains("Left")
-      ? soupRef.current.Slider(1)
-      : soupRef.current.Slider(-1);
+      ? soupRef.current.Slider(e, 1)
+      : soupRef.current.Slider(e, -1);
   };
 
   const sideSlide = (e) => {
     e.target.classList.contains("Left")
-      ? sideRef.current.Slider(1)
-      : sideRef.current.Slider(-1);
+      ? sideRef.current.Slider(e, 1)
+      : sideRef.current.Slider(e, -1);
   };
 
   const PopUpCarousel = () => {

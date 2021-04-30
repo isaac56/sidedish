@@ -7,7 +7,7 @@ import {
   AfterLeft,
 } from "../../Svg/Button";
 
-const CarouselButton = ({ PopUp, Name, Slide }) => {
+const CarouselButton = ({ PopUp, Name, Slide, count }) => {
   const [Right, setRight] = useState(BeforeRight);
   const [Left, setLeft] = useState(BeforeLeft);
 
@@ -25,6 +25,7 @@ const CarouselButton = ({ PopUp, Name, Slide }) => {
 
   return (
     <Button
+      count={count}
       PopUp={PopUp}
       className={Name}
       onMouseEnter={MouseEnter}
@@ -37,6 +38,12 @@ const CarouselButton = ({ PopUp, Name, Slide }) => {
 };
 
 const Button = styled.button`
+  pointer-events: ${({ count, className }) =>
+    count === 0 && className === "Left"
+      ? `none`
+      : count === 1 && className === "Right"
+      ? `none`
+      : null};
   margin: ${({ PopUp }) => (PopUp ? `0px` : `170px 0 0 0`)};
   z-index: ${({ PopUp }) => (PopUp ? `3` : `1`)};
   background-color: transparent;
