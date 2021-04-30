@@ -1,0 +1,17 @@
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('main');
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('soup');
+INSERT INTO `sidedish`.`category` (`name`) VALUES ('side');
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('할인특가 세트상품', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('풍성한 고기반찬', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('바다향가득 반찬', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('편리한 반찬세트', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('간편한 덮밥요리', true);
+INSERT INTO `sidedish`.`category` (`name`, `is_best`) VALUES ('우리아이영양반찬', true);
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('이벤트특가');
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('론칭특가');
+INSERT INTO `sidedish`.`badge` (`name`) VALUES ('베스트');
+INSERT INTO `sidedish`.`delivery_type` (`name`,`message`) VALUES ('새벽배송', '서울 경기 새벽배송');
+INSERT INTO `sidedish`.`delivery_type` (`name`,`message`) VALUES ('전국택배', '전국택배 (제주 및 도서산간 불가)');
+INSERT INTO `sidedish`.`provider` (`name`, `delivery_fee`, `delivery_free_price`) VALUES ('동네부엌', '2500', '40000');
+INSERT INTO `sidedish`.`product` (`provider_id`, `hash`, `name`, `description`, `price_original`, `price_discount`, `point`, `top_image_url`, `stock`) VALUES ('1', 'AAAAB','사계절 건강식당 작은상', '마포엄마들이 사랑해 온 건강반찬', '10000', '9000', '10', 'https://cdn.bmf.kr/_data/product/201410/13/b8b0a0aba3386f030155b6cb0c1c75fa.jpg', '10');
+INSERT INTO `sidedish`.`user` (`id`, `email`, `password`) VALUES ('1', 'test@test.com', '1234');
