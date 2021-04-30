@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/valid")
-    public ApiResult<Boolean> getValid(String accessToken) {
+    public ApiResult<Boolean> getValid(@RequestHeader(name = "Authorization") String accessToken) {
         logger.debug("로그인 되어있는지 확인 요청");
         if (accessToken == null) {
             return ApiResult.succeed(false);
