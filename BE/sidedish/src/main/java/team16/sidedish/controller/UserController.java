@@ -3,10 +3,7 @@ package team16.sidedish.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import team16.sidedish.dto.GithubEmailDTO;
 import team16.sidedish.dto.GithubTokenDTO;
@@ -31,29 +28,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/login/oauth2/code/github")
-    public RedirectView login_GithubOauth(@PathParam("code") String code, HttpSession httpSession) {
-        logger.debug("github authorization code: {}", code);
-
-        GithubTokenDTO accessToken = loginService.getAccessToken(code);
-        logger.debug("github access token: {}", accessToken.getAccessToken());
-        GithubEmailDTO githubEmailDTO = loginService.getEmailFromGithub(accessToken.getAccessToken());
-
-        //원래는 회원가입이 되어있지 않아서 로그인 실패가 되어야 하지만, 이 프로젝트에서는 자동 회원가입 시켜줌
-        if (!userService.emailExist(githubEmailDTO.getEmail())) {
-            // throw new NotFoundException(githubEmail.getEmail() +" 사용자는 존재하지 않습니다.");
-            userService.createUser(githubEmailDTO.getEmail());
-        }
-
-        HttpSessionUtils.setAccessToken(httpSession, accessToken.getAccessToken());
-
-        return new RedirectView("http://localhost:3000");
-    }
-
     @GetMapping("/valid")
-    public ApiResult<Boolean> getValid(HttpSession httpSession) {
+    public ApiResult<Boolean> getValid(@RequestHeader(name = "Authorization") String accessToken) {
         logger.debug("로그인 되어있는지 확인 요청");
-        String accessToken = HttpSessionUtils.getAccessToken(httpSession);
         if (accessToken == null) {
             return ApiResult.succeed(false);
         }
