@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/login/oauth2/code/github")
-    public String login_GithubOauth(@RequestBody Map<String, String> payload) {
+    public ApiResult<String> login_GithubOauth(@RequestBody Map<String, String> payload) {
         String authorization = payload.get("authorization");
         logger.debug("github authorization code: {}", authorization);
 
@@ -39,11 +39,11 @@ public class UserController {
             // throw new NotFoundException(githubEmail.getEmail() +" 사용자는 존재하지 않습니다.");
             userService.createUser(githubEmailDTO.getEmail());
         }
-        return accessToken.getAccessToken();
+        return ApiResult.succeed(accessToken.getAccessToken());
     }
 
-    @GetMapping("/valid")
-    public ApiResult<Boolean> getValid(String accessToken) {
+    @PostMapping("/valid")
+    public ApiResult<Boolean> getValid(@RequestHeader(name = "Authorization") String accessToken) {
         logger.debug("로그인 되어있는지 확인 요청");
         if (accessToken == null) {
             return ApiResult.succeed(false);
