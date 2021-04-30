@@ -26,8 +26,10 @@ const Box = styled.div`
   margin: 0 auto;
 `;
 
-const Best = ({ modal, setModal, ModalData, setModalData }) => {
+const Best = () => {
+  const [ModalData, setModalData] = useState([]);
   const [toggleState, setToggleState] = useState(1);
+  const [modal, setModal] = useState(false);
 
   const toggleTab = (index) => {
     setToggleState(index);

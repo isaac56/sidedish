@@ -4,7 +4,9 @@ import axios from "axios";
 import Carousel from "../Carousel/Carousel";
 import PopUpModal from "../PopUpModal/PopUpModal";
 import CarouselButton from "../Carousel/CarouselButton";
-const Main = ({ modal, setModal, ModalData, setModalData }) => {
+const Main = () => {
+  const [ModalData, setModalData] = useState([]);
+  const [modal, setModal] = useState(false);
   const [Food, setFood] = useState([]);
   const mainRef = useRef(null);
   const foodRef = useRef();

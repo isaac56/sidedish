@@ -7,17 +7,7 @@ import React, {
 import styled from "styled-components";
 import CarouselCard from "./CarouselCard";
 const Carousel = (
-  {
-    PopUp,
-    MainTitle,
-    Food,
-    setFood,
-    Ref,
-    setModal,
-    setModalData,
-    count,
-    setCount,
-  },
+  { PopUp, MainTitle, Food, setFood, Ref, setModal, setModalData },
   ref
 ) => {
   const virtualImage = PopUp ? Food : Food.slice(Food.length - 4, Food.length); // 마지막부분 4개의 사진을 복사하여 0~4번 이미지를 만들어준다.

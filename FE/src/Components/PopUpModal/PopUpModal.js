@@ -258,7 +258,7 @@ const Button = styled.div`
 const CarouselSlide = styled.div`
   position: relative;
   width: 960px;
-  height: 440px;
+  height: 350px;
   display: flex;
   justify-content: center;
   background-color: #f5f5f7;
