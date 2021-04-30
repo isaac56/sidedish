@@ -15,6 +15,12 @@
 
 ---
 
+## ☀️ React Component 구조
+
+<img width="509" alt="68747470733a2f2f692e6962622e636f2f4d3157305730312f53637265656e2d53686f742d323032312d30342d32392d61742d332d33382d31342d504d2e706e67" src="https://user-images.githubusercontent.com/46085281/116669149-33fabd80-a9d9-11eb-8358-9bb672494b0b.png">
+
+--- 
+
 ## 👁 LOOK
 
 ![스크린샷 2021-04-30 오후 1 33 54](https://user-images.githubusercontent.com/46085281/116654226-b4aebf00-a9c3-11eb-9eb9-94504b70800e.png)
