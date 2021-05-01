@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+node_modules
+package.json
+yarn.lock
+BE
+DOCS
